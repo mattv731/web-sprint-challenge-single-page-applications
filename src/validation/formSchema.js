@@ -1,5 +1,7 @@
 import * as yup from 'yup';
 
+
+// validate to ensure the requirements are met before ordering
 const formSchema = yup.object().shape({
     name: yup
         .string()

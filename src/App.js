@@ -5,6 +5,8 @@ import * as yup from 'yup';
 import schema from './validation/formSchema';
 import { Route, Link } from 'react-router-dom';
 
+
+// Initial values to reset after form is submitted
 const emptyForm = {
   name: '',
   size: '',
@@ -15,12 +17,15 @@ const emptyForm = {
   special: ''
 }
 
+// Initial errors to reset after form is submitted
+
 const emptyFormErrors = {
   name: '',
   size: '',
   special: ''
 }
 
+// Submit is only allowed when requirements are met
 const initialDisabled = true
 
 const App = () => {
@@ -31,21 +36,20 @@ const App = () => {
   const [confirm, setConfirm] = useState(emptyForm)
   
   const postNewPizza = newPizza => {
-    // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
-    //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
-    //    and regardless of success or failure, the form should reset
 
+// posting information to this end point
     axios.post('https://reqres.in/api/orders', newPizza)
       .then(resp => {
-        console.log(resp.data)
         setConfirm(resp.data)
       })
       .catch(err => console.error(err))
       .finally(() => {
+        //reset the form to blank
         setFormValues(emptyForm)
       })
   }
 
+  // update the data
   const formSubmit = () => {
     const newPizza = {
       name: formValues.name.trim(),
@@ -59,14 +63,15 @@ const App = () => {
     postNewPizza(newPizza)
   }
 
+  // make sure the information getting passed in is valid
   const validate = (name, value) => {
     yup.reach(schema, name).validate(value)
       .then(() => setFormErrors({ ...formErrors, [name]: '' }))
       .catch(err => setFormErrors({ ...formErrors, [name]: err.errors[0]}))
   }
 
+  // Making new form values
   const inputChange = (name, value) => {
-    // 🔥 STEP 10- RUN VALIDATION WITH YUP
     validate(name, value);
     setFormValues({
       ...formValues,
@@ -74,6 +79,7 @@ const App = () => {
     })
   }
 
+  // make the submit button enabled if the requirements are met
   useEffect(() => {
     schema.isValid(formValues).then(valid => setDisabled(!valid));
   }, [formValues])
@@ -85,8 +91,8 @@ const App = () => {
       <nav>
         <Link id='home' to='/'>Home</Link>
         <Link id='order-pizza' to="/pizza">Pizza</Link> 
-        {/*please don't mark me down for this, the test wasn't 
-        working so that's why I have two buttons that do the same thing*/}
+        {/*the test wasn't 
+        working so that's why I have two buttons that do the same thing. I was a little confused with the instruction wording */}
         <Link id='pizza-form' to="/pizza">order-pizza</Link>
 
       </nav>
@@ -97,8 +103,8 @@ const App = () => {
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}
-        confirm={confirm}
       />
+      {/** order confirmation */}
       <h3>Your order has been Confirmed if information shows up under here after you submit.</h3>
       Name: {confirm.name}<br />
       Size: {confirm.size}<br />

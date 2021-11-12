@@ -7,7 +7,6 @@ const PizzaForm = (props) => {
         change,
         disabled,
         errors,
-        confirm
     } = props
 
     const onSubmit = evt => {
@@ -21,7 +20,7 @@ const PizzaForm = (props) => {
         change(name, realValue)
     }
 
-
+// making the inputs and labels in JSX
     return (
         <div>
         <form id='pizza-form' onSubmit={onSubmit}>
