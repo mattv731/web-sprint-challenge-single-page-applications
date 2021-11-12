@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from 'axios';
-import Pizza from "./PizzaForm";
+import PizzaForm from "./PizzaForm";
 import * as yup from 'yup';
 import schema from './validation/formSchema';
 import { Route, Link } from 'react-router-dom';
@@ -97,7 +97,7 @@ const App = () => {
 
       </nav>
       <Route path="/pizza">
-      <Pizza 
+      <PizzaForm
         values={formValues}
         change={inputChange}
         submit={formSubmit}
