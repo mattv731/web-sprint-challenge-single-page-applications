@@ -42,7 +42,7 @@ const PizzaForm = (props) => {
                 </label>
                 <label>Size: 
                     <select
-                        id='size=dropdown'
+                        id='size-dropdown'
                         value={values.size}
                         onChange={onChange}
                         name='size'
