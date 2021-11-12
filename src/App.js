@@ -28,6 +28,7 @@ const App = () => {
   const [formValues, setFormValues] = useState(emptyForm)
   const [formErrors, setFormErrors] = useState(emptyFormErrors)
   const [disabled, setDisabled] = useState(initialDisabled)
+  const [confirm, setConfirm] = useState(emptyForm)
   
   const postNewPizza = newPizza => {
     // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
@@ -37,7 +38,7 @@ const App = () => {
     axios.post('https://reqres.in/api/orders', newPizza)
       .then(resp => {
         console.log(resp.data)
-        setFormValues(resp.data)
+        setConfirm(resp.data)
       })
       .catch(err => console.error(err))
       .finally(() => {
@@ -49,7 +50,10 @@ const App = () => {
     const newPizza = {
       name: formValues.name.trim(),
       size: formValues.size.trim(),
-      toppings: ['pepperoni', 'ham', 'veggies', 'mushrooms'].filter(topping => !!formValues[topping]),
+      pepperoni: !!formValues.pepperoni,
+      ham: !!formValues.ham,
+      veggies: !!formValues.veggies,
+      mushrooms: !!formValues.mushrooms,
       special: formValues.special.trim(),
     }
     postNewPizza(newPizza)
@@ -90,7 +94,16 @@ const App = () => {
         submit={formSubmit}
         disabled={disabled}
         errors={formErrors}
+        confirm={confirm}
       />
+      <h3>Your order has been Confirmed if information shows up under here after you submit.</h3>
+      Name: {confirm.name}<br />
+      Size: {confirm.size}<br />
+      Pepperoni: {confirm.pepperoni}  <br />
+      Ham: {confirm.ham}  <br />
+      Veggies: {confirm.veggies}  <br />
+      Mushrooms: {confirm.mushrooms.boolean}<br />
+      Special information: {confirm.special}
       </Route>
 
     </>

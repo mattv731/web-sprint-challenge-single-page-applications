@@ -57,7 +57,7 @@ const PizzaForm = (props) => {
                 <label>Pepperoni
                     <input
                         id='pepperoni'
-                        value={values.pepperoni}
+                        checked={values.pepperoni}
                         onChange={onChange}
                         name='pepperoni'
                         type='checkbox'
@@ -66,7 +66,7 @@ const PizzaForm = (props) => {
                 <label>Ham
                     <input
                         id='ham'
-                        value={values.ham}
+                        checked={values.ham}
                         onChange={onChange}
                         name='ham'
                         type='checkbox'
@@ -75,7 +75,7 @@ const PizzaForm = (props) => {
                 <label>Veggies
                     <input
                         id='veggies'
-                        value={values.veggies}
+                        checked={values.veggies}
                         onChange={onChange}
                         name='veggies'
                         type='checkbox'
@@ -84,7 +84,7 @@ const PizzaForm = (props) => {
                 <label>Mushrooms
                     <input
                         id='mushrooms'
-                        value={values.mushrooms}
+                        checked={values.mushrooms}
                         onChange={onChange}
                         name='mushrooms'
                         type='checkbox'
