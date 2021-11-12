@@ -33,10 +33,11 @@ const App = () => {
     // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
     //    helper to [POST] `newFriend` to `http://buddies.com/api/friends`
     //    and regardless of success or failure, the form should reset
+
     axios.post('https://reqres.in/api/orders', newPizza)
       .then(resp => {
-        // console.log(resp)
-        // setFriends([resp.data, ...friends]);
+        console.log(resp.data)
+        setFormValues(resp.data)
       })
       .catch(err => console.error(err))
       .finally(() => {
@@ -78,7 +79,9 @@ const App = () => {
       <h1>Lambda Eats</h1>
       <p>Enjoy delicious pizza that will melt in you mouth like carrot cake</p>
       <nav>
-        <Link to="/pizza">Pizza</Link>
+        <Link id='order-pizza' to="/">Home</Link>
+        <Link id='pizza-form' to="/pizza">Pizza</Link>
+
       </nav>
       <Route path="/pizza">
       <Pizza 
@@ -89,6 +92,7 @@ const App = () => {
         errors={formErrors}
       />
       </Route>
+
     </>
   );
 };

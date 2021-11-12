@@ -7,6 +7,7 @@ const PizzaForm = (props) => {
         change,
         disabled,
         errors,
+        confirm
     } = props
 
     const onSubmit = evt => {
@@ -22,6 +23,7 @@ const PizzaForm = (props) => {
 
 
     return (
+        <div>
         <form id='pizza-form' onSubmit={onSubmit}>
             <div className='form'>
                 <div className='errors'>
@@ -97,9 +99,10 @@ const PizzaForm = (props) => {
                         type='text'
                     />
                 </label>
-                <button disabled={disabled}>submit</button>
+                <button id='order-button' disabled={disabled}>Add to Order</button>
             </div>
         </form>
+        </div>
     )
 }
 export default PizzaForm;
