@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Pizza from "./PizzaForm";
 import * as yup from 'yup';
-import schema from './validation/formSchema'
+import schema from './validation/formSchema';
+import { Route, Link } from 'react-router-dom';
 
 const emptyForm = {
   name: '',
@@ -76,6 +77,10 @@ const App = () => {
     <>
       <h1>Lambda Eats</h1>
       <p>Enjoy delicious pizza that will melt in you mouth like carrot cake</p>
+      <nav>
+        <Link to="/pizza">Pizza</Link>
+      </nav>
+      <Route path="/pizza">
       <Pizza 
         values={formValues}
         change={inputChange}
@@ -83,6 +88,7 @@ const App = () => {
         disabled={disabled}
         errors={formErrors}
       />
+      </Route>
     </>
   );
 };
